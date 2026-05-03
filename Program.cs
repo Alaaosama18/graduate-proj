@@ -15,7 +15,7 @@ namespace graduate_proj
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<AppDbContext>(options =>
-                 options.UseSqlServer("Server=.;Database=BikeRentalDB;Trusted_Connection=True;TrustServerCertificate=True;"));
+                 options.UseSqlite("Server=.;Database=BikeRentalDB;Trusted_Connection=True;TrustServerCertificate=True;"));
 
             var app = builder.Build();
 
@@ -34,6 +34,9 @@ namespace graduate_proj
             app.MapControllers();
 
             app.Run();
+            builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite("Data Source=BikesProject.db"));
+
         }
     }
 }
